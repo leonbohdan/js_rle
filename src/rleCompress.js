@@ -18,7 +18,31 @@
  * @return {string}
  */
 function rleCompress(source) {
-  // write code here
+  let result = '';
+  let count = 1;
+  let prevLetter = '';
+
+  for (const currentLetter of source) {
+    if (currentLetter === prevLetter) {
+      count++;
+    } else {
+      if (count > 1) {
+        result += count;
+      }
+
+      result += currentLetter;
+      prevLetter = currentLetter;
+      count = 1;
+    }
+  }
+
+  if (count > 1) {
+    result += count;
+  }
+
+  return result;
 }
+
+rleCompress('BCCDDDAXXXX');
 
 module.exports = rleCompress;
